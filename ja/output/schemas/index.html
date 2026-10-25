@@ -33,7 +33,7 @@
       
       
       <link rel="icon" href="../../../assets/icon.svg">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -41,10 +41,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4521,7 +4521,7 @@
 
 
 <h1 id="_1">出力スキーマ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>この仕様は、pyscn が生成する JSON、YAML、CSV 出力の正確な構造を定義します。ここに記載されたすべてのフィールド名、型、およびセマンティクスは、同一メジャーバージョン内のパッチリリースにおいて安定しています。</p>
+<p>この仕様は、pyscn が生成する JSON、YAML、CSV 出力の構造を定義します。現在の <code>pyscn analyze</code> JSON/YAML 契約は <code>schema_version: 2</code> です。フィールド名、型、および意味は同じスキーマバージョン内で安定しています。</p>
 <h2 id="_2">安定性契約<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4545,7 +4545,7 @@
 </tr>
 </tbody>
 </table>
-<p>破壊的変更はメジャーバージョンアップ時のみ行われます。利用者は未知のフィールドを無視しなければなりません（MUST）。</p>
+<p>意味の変更を含む破壊的変更では <code>schema_version</code> を上げます。利用者は未知のフィールドを無視しなければなりません（MUST）。バージョン 2 の <code>summary.code_duplication_percentage</code> は、バージョン 1 のフラグメント比率に代わり、クローンが覆う重複のないソース行の割合を示します。</p>
 <!-- Field naming note: every object key in `pyscn analyze` JSON/YAML is snake_case. Releases up to 1.29.1 emitted Go-style PascalCase inside `complexity`, `cbo`, `lcom`, and `system`, and lowerCamelCase inside the `config` objects of `cbo`, `lcom`, and `community_analysis`; both were renamed to snake_case. -->
 
 <h2 id="pyscn-analyze">トップレベル構造 (<code>pyscn analyze</code>)<a class="headerlink" href="#pyscn-analyze" title="Permanent link">&para;</a></h2>
@@ -4560,10 +4560,11 @@
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">"mock_data"</span><span class="p">:</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="cm">/* MockDataResponse, present when enabled */</span><span class="w"> </span><span class="p">},</span>
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">"suggestions"</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="w"> </span><span class="cm">/* Suggestion array, omitted when empty */</span><span class="w"> </span><span class="p">],</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">"summary"</span><span class="p">:</span><span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="cm">/* AnalyzeSummary, always present */</span><span class="w"> </span><span class="p">},</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">"generated_at"</span><span class="p">:</span><span class="w">  </span><span class="s2">"2026-04-14T10:18:23Z"</span><span class="p">,</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">"duration_ms"</span><span class="p">:</span><span class="w">   </span><span class="mi">2347</span><span class="p">,</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w">       </span><span class="s2">"0.14.0"</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">"schema_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">"generated_at"</span><span class="p">:</span><span class="w">  </span><span class="s2">"2026-04-14T10:18:23Z"</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">"duration_ms"</span><span class="p">:</span><span class="w">   </span><span class="mi">2347</span><span class="p">,</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w">       </span><span class="s2">"0.14.0"</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">}</span>
 </span></code></pre></div>
 <table>
 <thead>
@@ -4627,6 +4628,12 @@
 <td><code>summary</code></td>
 <td>object</td>
 <td>常に存在します。<a href="#summary-object"><code>summary</code></a> を参照してください。</td>
+<td>stable</td>
+</tr>
+<tr>
+<td><code>schema_version</code></td>
+<td>integer</td>
+<td>レポート契約のバージョン。現在は <code>2</code>。</td>
 <td>stable</td>
 </tr>
 <tr>
@@ -4842,7 +4849,7 @@
 <tr>
 <td><code>code_duplication_percentage</code></td>
 <td>number</td>
-<td>推定重複率、<code>0</code>–<code>100</code>。</td>
+<td>分析済みソース行のうちクローンが覆う行の割合、<code>0</code>–<code>100</code>。</td>
 </tr>
 </tbody>
 </table>
@@ -5900,7 +5907,12 @@
 <tr>
 <td><code>duplicated_fragments</code></td>
 <td>integer</td>
-<td>検出されたクローン関係に含まれる断片。<code>min_similarity</code>/<code>max_similarity</code> の出力フィルタ適用前の値。<code>total_fragments</code> と同じ母集団を共有し、重複スコアの分子になります。</td>
+<td>検出されたクローン関係に含まれる断片。<code>min_similarity</code>/<code>max_similarity</code> の出力フィルタ適用前の値。<code>total_fragments</code> と同じ母集団を共有します。</td>
+</tr>
+<tr>
+<td><code>duplicated_lines</code></td>
+<td>integer</td>
+<td>出力フィルタ適用前にスコア対象のクローンが覆う重複のないソース行数。<code>code_duplication_percentage</code> の分子です。</td>
 </tr>
 <tr>
 <td><code>total_clones</code></td>
@@ -7089,10 +7101,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.indexes", "navigation.tracking", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit", "content.tooltips", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "navigation.indexes", "navigation.tracking", "header.autohide", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit", "content.tooltips", "announce.dismiss"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>
